@@ -6,23 +6,23 @@ const HoursAndDate = () => {
     const [currentDay, setCurrentDay] = useState('');
 
     useEffect(() => {
-        // تابع برای به دست آوردن روز هفته فعلی
+        // Function to get the current day of the week
         const getCurrentDay = () => {
             const daysOfWeek = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
             const dayIndex = currentTime.getDay();
             return daysOfWeek[dayIndex];
         };
 
-        // تابع برای به دست آوردن زمان جاری
+        // Function to get the current time
         const updateClock = () => {
             setCurrentTime(new Date());
             setCurrentDay(getCurrentDay());
         };
 
-        // فراخوانی تابع برای به‌روز‌رسانی هر ثانیه
+        // Call the function to update every second
         const intervalId = setInterval(updateClock, 1000);
 
-        // حذف interval در هنگام حذف کامپوننت
+        // Remove the interval when removing the component
         return () => clearInterval(intervalId);
     }, [currentTime]);
     return (
